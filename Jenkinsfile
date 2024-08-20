@@ -44,7 +44,7 @@ pipeline{
                 echo "Deploy the code to the production environment specified by the environment variable: ${env.PRODUCTION_ENVIRONMENT}"
             }
         }
-        stage('Deploy') {
+        stage('Try') {
             steps {
                 echo "Deploy the code to the production environment specified by the environment variable: ${env.PRODUCTION_ENVIRONMENT}"
             }

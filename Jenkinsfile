@@ -1,53 +1,65 @@
-pipeline{
+pipeline {
     agent any
-    environment {
-        DIRECTORY_PATH = '/var/jenkins_home/workspace/5.1P_Pipeline'
-        TESTING_ENVIRONMENT = 'Testing_Env'
-        PRODUCTION_ENVIRONMENT = 'LiamBishop_Prod'
-    }
     stages {
         stage('Build') {
             steps {
-                echo "Fetch the source code from the directory path specified by the environment variable: ${env.DIRECTORY_PATH}"
-                echo "Compile the code and generate any necessary artifacts."
+                echo 'Building...'
+                echo 'Task: Compile and package the code.'
+                echo 'Tool: Maven'
             }
         }
-
-        stage('Test') {
+        stage('Unit and Integration Tests') {
             steps {
-                echo "Unit tests."
-                echo "Integration tests."
+                echo 'Running Tests...'
+                echo 'Task: Run unit tests to ensure code correctness and integration tests for component integration.'
+                echo 'Tool: JUnit for unit tests, TestNG for integration tests'
             }
         }
-
-        stage('Code Quality Check') {
+        stage('Code Analysis') {
             steps {
-                echo "Check the quality of the code."
+                echo 'Analyzing Code...'
+                echo 'Task: Analyze the code to ensure it meets industry standards.'
+                echo 'Tool: SonarQube'
             }
         }
-
-        stage('Deploy') {
+        stage('Security Scan') {
             steps {
-                echo "Deploy the application to a testing environment specified by the environment variable: ${env.TESTING_ENVIRONMENT}"
+                echo 'Scanning for Vulnerabilities...'
+                echo 'Task: Perform a security scan on the code to identify vulnerabilities.'
+                echo 'Tool: OWASP Dependency-Check'
             }
         }
-
-        stage('Approval') {
+        stage('Deploy to Staging') {
             steps {
-                echo "Waiting for manual approval..."
-                sleep 10
+                echo 'Deploying to Staging...'
+                echo 'Task: Deploy the application to a staging server.'
+                echo 'Tool: Ansible or AWS CLI'
             }
         }
-
+        stage('Integration Tests on Staging') {
+            steps {
+                echo 'Running Integration Tests on Staging...'
+                echo 'Task: Run integration tests on the staging environment.'
+                echo 'Tool: Selenium for UI testing or Postman for API testing'
+            }
+        }
         stage('Deploy to Production') {
             steps {
-                echo "Deploy the code to the production environment specified by the environment variable: ${env.PRODUCTION_ENVIRONMENT}"
+                echo 'Deploying to Production...'
+                echo 'Task: Deploy the application to a production server.'
+                echo 'Tool: Ansible or AWS CLI'
             }
         }
-        stage('Try') {
-            steps {
-                echo "Deploy the code to the production environment specified by the environment variable: ${env.PRODUCTION_ENVIRONMENT}"
-            }
+    }
+    post {
+        always {
+            echo 'Pipeline finished.'
+        }
+        success {
+            echo 'Sending success email notification...'
+        }
+        failure {
+            echo 'Sending failure email notification...'
         }
     }
 }

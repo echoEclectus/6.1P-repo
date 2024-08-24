@@ -32,9 +32,9 @@ pipeline {
                 success {
                     emailext (
                         body: "The Unit and Integration Tests stage has successfully completed.", 
-                        subject: "Pipeline Success: Unit and Integration Tests - ${env.JOB_NAME} [${env.BUILD_NUMBER}]", 
-                        to: 'liambishop54322@gmail.com'
-                        //attachLog: true
+                        subject: "Pipeline Success: Security Scan - ${env.JOB_NAME} [${env.BUILD_NUMBER}]", 
+                        to: 'liambishop54322@gmail.com',
+                        attachLog: true
                     )
                 }
                 failure {

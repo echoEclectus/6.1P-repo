@@ -34,7 +34,7 @@ pipeline {
                         to: 'liambishop54322@gmail.com',
                         subject: "Pipeline Success: Unit and Integration Tests - ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
                         body: "The Unit and Integration Tests stage has successfully completed.",
-                        attachLog: true
+                        //attachLog: true
                     )
                 }
                 failure {

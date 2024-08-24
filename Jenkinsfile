@@ -36,7 +36,7 @@ pipeline {
                         //attachmentsPattern: 'logs/*.log'
                 }
                 failure {
-                    emailext to: 'liambishop54322@gmail.com',
+                    mail to: 'liambishop54322@gmail.com',
                     subject: "Pipeline Failure: Security Scan - ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
                     body: "The Security Scan stage failed. Please review the logs."
                          //attachmentsPattern: 'logs/*.log'

@@ -30,10 +30,12 @@ pipeline {
             }
             post {
                 success {
-                    emailext to: 'liambishop54322@gmail.com',
-                    subject: "Pipeline Success: Security Scan - ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                    body: "The Security Scan stage has successfully completed."
-                        //attachmentsPattern: 'logs/*.log'
+                    emailext (
+                        to: 'liambishop54322@gmail.com',
+                        subject: "Pipeline Success: Unit and Integration Tests - ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
+                        body: "The Unit and Integration Tests stage has successfully completed.",
+                        attachLog: true
+                    )
                 }
                 failure {
                     mail to: 'liambishop54322@gmail.com',

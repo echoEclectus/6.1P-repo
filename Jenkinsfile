@@ -14,6 +14,24 @@ pipeline {
                 echo 'Task: Run unit tests to ensure code correctness and integration tests for component integration.'
                 echo 'Tool: JUnit for unit tests, TestNG for integration tests'
             }
+            post {
+                success {
+                    emailext (
+                        to: 'liambishop54322@gmail.com',
+                        subject: "Pipeline Success: Unit and Integration Tests - ${env.JOB_NAME} [${env.BUILD_NUMBER}]", 
+                        body: "The Unit and Integration Tests stage has successfully completed.", 
+                        attachLog: true
+                    )
+                }
+                failure {
+                    emailext(
+                        to: 'liambishop54322@gmail.com',
+                        subject: "Pipeline Failure: Unit and Integration Tests - ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
+                        body: "The Unit and Integration Tests stage failed. Please review the logs.",
+                        attachLog: true
+                    ) 
+                }
+            }            
         }
         stage('Code Analysis') {
             steps {

@@ -41,6 +41,7 @@ pipeline {
                          body: "The Security Scan stage failed. Please review the logs.",
                          attachmentsPattern: 'logs/*.log'
                 }
+            }
         }
         stage('Deploy to Staging') {
             steps {
@@ -64,5 +65,5 @@ pipeline {
             }
         }
     }
-    }
 }
+

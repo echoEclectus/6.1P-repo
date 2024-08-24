@@ -33,13 +33,13 @@ pipeline {
                     mail to: 's223365834@deakin.edu.au',
                         subject: "Pipeline Success: Security Scan - ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
                         body: "The Security Scan stage has successfully completed.",
-                        attachmentsPattern: 'logs/*.log'
+                        //attachmentsPattern: 'logs/*.log'
                 }
                 failure {
                     mail to: 's223365834$deakin.edu.au',
                          subject: "Pipeline Failure: Security Scan - ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
                          body: "The Security Scan stage failed. Please review the logs.",
-                         attachmentsPattern: 'logs/*.log'
+                         //attachmentsPattern: 'logs/*.log'
                 }
             }
         }

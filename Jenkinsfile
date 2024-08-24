@@ -31,9 +31,9 @@ pipeline {
             post {
                 success {
                     emailext (
-                        to: 'liambishop54322@gmail.com',
-                        subject: "Pipeline Success: Unit and Integration Tests - ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                        body: "The Unit and Integration Tests stage has successfully completed.",
+                        body: "The Unit and Integration Tests stage has successfully completed.", 
+                        subject: "Pipeline Success: Unit and Integration Tests - ${env.JOB_NAME} [${env.BUILD_NUMBER}]", 
+                        to: 'liambishop54322@gmail.com'
                         //attachLog: true
                     )
                 }
